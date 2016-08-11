@@ -24,6 +24,8 @@ public class Dijkstra {
         mVisited = new HashSet<DijkstraNode>();
     }
 
+
+
     public Set<DijkstraNode> findShortestPath(int source, int target) {
 
         Queue<DijkstraNode> myQ = new PriorityQueue<>(new DijkstraNodeComparator());
@@ -37,32 +39,36 @@ public class Dijkstra {
         }
 
         // Loop until the queue myQ of DijkstraNodes is exhausted or mVisited contains the target node.
-        // TODO: 8/10/16 Fix below.  Above should be fine.
         while (!myQ.isEmpty()) {
             DijkstraNode sourceNode = myQ.poll();
-            System.out.printf("Node %d is popped from myQ\n", sourceNode.getValue());
+
+            System.out.printf("Node %d is the source node with distance %d\n",
+                    sourceNode.getValue(),sourceNode.getDistance());
+            System.out.printf("The queue is length %d\n",myQ.size());
+
+            // Check to see if the target node has been reached.  If so, then return the Set of nodes.
+            // We are done.
+            if (sourceNode.equals(targetNode)) {
+                mVisited.add(sourceNode);
+                System.out.println("done");
+                return mVisited;
+            }
 
             if (!mVisited.contains(sourceNode) && !mVisited.contains(targetNode)) {
                 
                 for (DijkstraEdge de : mGraph.getMyPaths(sourceNode)) {
-                    // TODO: 8/10/16 Fsr, currentNode doesn't have value 2 when passing in sourceNode 1.
                     DijkstraNode currentNode = de.getAdjacentNode(sourceNode);
-
-                    System.out.println("looping");
 
                     int tentativeDistance = sourceNode.getDistance() + de.getDistance();
                     if (tentativeDistance < currentNode.getDistance() && !mVisited.contains(currentNode)) {
                         currentNode.setDistance(tentativeDistance);
                         myQ.add(currentNode);
-                        System.out.printf("Node %d is added to myQ\n", currentNode.getValue());
-                    }
-
+                    } //end if
                 } //end for loop
-                //System.out.printf("Node %d is added to mVisited\n", sourceNode.getValue());
                 mVisited.add(sourceNode);
             } //end if
         } //end while
         return mVisited;
-        //return mGraph.getBoard().keySet();
+
     }
 }
