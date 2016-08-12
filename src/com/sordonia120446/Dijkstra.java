@@ -24,8 +24,6 @@ public class Dijkstra {
         mVisited = new HashSet<DijkstraNode>();
     }
 
-
-
     public Set<DijkstraNode> findShortestPath(int source, int target) {
 
         Queue<DijkstraNode> myQ = new PriorityQueue<>(new DijkstraNodeComparator());
@@ -42,9 +40,9 @@ public class Dijkstra {
         while (!myQ.isEmpty()) {
             DijkstraNode sourceNode = myQ.poll();
 
-            System.out.printf("Node %d is the source node with distance %d\n",
-                    sourceNode.getValue(),sourceNode.getDistance());
-            System.out.printf("The queue is length %d\n",myQ.size());
+//            System.out.printf("Node %d is the source node with distance %d\n",
+//                    sourceNode.getValue(),sourceNode.getDistance());
+//            System.out.printf("The queue is length %d\n",myQ.size());
 
             // Check to see if the target node has been reached.  If so, then return the Set of nodes.
             // We are done.
@@ -70,5 +68,7 @@ public class Dijkstra {
         } //end while
         return mVisited;
 
-    }
-}
+    } //end method findShortestPath
+
+    // TODO: 8/12/16 Overload method findShortestPath to include a restrictor on path progression. 
+} //end class Dijkstra

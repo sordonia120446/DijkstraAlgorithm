@@ -7,9 +7,10 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
-        // Testing the TestCase2 class that reads in a txt file.
+        // Testing the TestCase2 class that reads in a txt/csv file.
         String filename = "src/p081_matrix.txt";
         TestCase2 tc2 = new TestCase2(filename);
+        System.out.println(tc2.getGraph().getBoard().size());
 
         // Test Case 0
 //        Graph myGraph = new Graph();

@@ -16,34 +16,39 @@ import java.util.ArrayList;
  */
 public class TwoDArray {
     private ArrayList<int[]> mRows;
-    private int[] mMatrix;
+    private int[] contiguousArray;
     private int mSize;
 
     public TwoDArray(ArrayList<int[]> rows, int size) {
         mRows = rows;
         mSize = size;
-        mMatrix = new int[mSize*mSize];
+        contiguousArray = new int[mSize*mSize];
+        fillContiguousArray();
     }
 
     public int[] getContiguousArray() {
-        return mMatrix;
+        return contiguousArray;
     }
 
     public int getSize() {
         return mSize;
     }
 
-    public void fillMatrix() {
+    public int getSizeOfContiguousArray() {
+        return contiguousArray.length;
+    }
+
+    public void fillContiguousArray() {
         int cntr = 0;
         for (int[] row:mRows) {
             for (int i = 0; i < row.length; i++) {
-                mMatrix[cntr] = row[i];
+                contiguousArray[cntr] = row[i];
                 cntr++;
             }
         }
     }
 
     public int getElement(int row, int col) {
-        return mMatrix[row*mSize + col];
+        return contiguousArray[row*mSize + col];
     }
 }

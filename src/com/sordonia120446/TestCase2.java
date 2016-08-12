@@ -15,25 +15,34 @@ public class TestCase2 {
     private Graph mGraph;
     private Scanner mScanner;
     private ArrayList<int[]> myRows;
-    private TwoDArray mMatrix;
+    private TwoDArray contiguousArray;
 
     public TestCase2(String filename) {
         mGraph = new Graph();
         myRows = new ArrayList<>();
         fillMatrix(filename);
+        fillGraph();
     }
 
     public Graph getGraph() {
         return mGraph;
     }
 
-    public TwoDArray getMatrix() {
-        return mMatrix;
-    }
+    // TODO: 8/12/16 make method to iterate through TwoDArray mMatrix and fill mGraph with nodes and edges.
+    public void fillGraph() {
+        for (int r = 0; r < (contiguousArray.getSize() - 1); r++) {
+            for (int c = 0; c < (contiguousArray.getSize() - 1); c++) {
+                int distance = contiguousArray.getElement(r,c);
+                mGraph.addEdge(new DijkstraNode(r),new DijkstraNode(c),distance);
+            }
+        }
+    } //end fillGraph
 
     private void extractRows(Scanner scanner) {
-        // Extracts data as rows of int[].
-        // Adds all 80x rows of 80 #'s each row to ArrayList myRows.
+        /*
+        Extracts data as rows of int[].
+        Adds all 80x rows of 80 #'s each row to ArrayList myRows.
+        */
         while (scanner.hasNext()) {
             String[] row = scanner.next().split(",");
             int[] rowData = new int[row.length];
@@ -51,23 +60,16 @@ public class TestCase2 {
         Extracts each row as an int[] and stores into ArrayList<int[]> myRows.
         Transfers data in the ArrayList of int[]'s into a contiguous 1D array.
         */
-        if (filename.endsWith(".txt")) {
-            readTextFile(filename);
-        }
-        else if (filename.endsWith(".csv")) {
-            readCSVFile(filename);
-        }
-        else {
-            System.out.println("File must be txt or csv.");
-        }
+        readInputFile(filename);
         extractRows(mScanner);
-        mMatrix = new TwoDArray( myRows, myRows.size() );
+        contiguousArray = new TwoDArray( myRows, myRows.size() );
     }
 
-    private void readTextFile(String filename) {
+    private void readInputFile(String filename) {
+        /* Helper reader method.  Tested for txt and csv files. */
         try {
-            File txtFile = new File(filename);
-            mScanner = new Scanner(txtFile);
+            File inputFile = new File(filename);
+            mScanner = new Scanner(inputFile);
         }
         catch (Exception exc) {
             System.out.println("Where's your file homie???");
@@ -75,15 +77,4 @@ public class TestCase2 {
         }
     } //end method readTextFile
 
-    private void readCSVFile(String filename) {
-        try {
-            File txtFile = new File(filename);
-            mScanner = new Scanner(txtFile);
-
-        }
-        catch (Exception exc) {
-            System.out.println("Where's your file homie???");
-            exc.printStackTrace();
-        }
-    }
 }
