@@ -7,6 +7,10 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
 
+        // Testing the TestCase2 class that reads in a txt file.
+        String filename = "src/p081_matrix.txt";
+        TestCase2 tc2 = new TestCase2(filename);
+
         // Test Case 0
 //        Graph myGraph = new Graph();
 //        myGraph.addEdge(new DijkstraNode(0), new DijkstraNode(1), 2);
@@ -16,15 +20,15 @@ public class Main {
 //        int target = 2;
 
         // Test Case 1
-        TestCase1 tc1 = new TestCase1();
-        Dijkstra solver = new Dijkstra(tc1.getGraph());
-        int start = 1;
-        int target = 6;
-
-        Set<DijkstraNode> mySet = solver.findShortestPath(start,target);
-        System.out.println("\n\nHere are the results: \n");
-        for (DijkstraNode dn:mySet) {
-            System.out.printf("Node %d is %d distance away\n",dn.getValue(),dn.getDistance());
-        }
+//        TestCase1 tc1 = new TestCase1();
+//        Dijkstra solver = new Dijkstra(tc1.getGraph());
+//        int start = 1;
+//        int target = 6;
+//
+//        Set<DijkstraNode> mySet = solver.findShortestPath(start,target);
+//        System.out.println("\n\nHere are the results: \n");
+//        for (DijkstraNode dn:mySet) {
+//            System.out.printf("Node %d is %d distance away\n",dn.getValue(),dn.getDistance());
+//        }
     }
 }
