@@ -28,12 +28,23 @@ public class TestCase2 {
         return mGraph;
     }
 
-    // TODO: 8/12/16 make method to iterate through TwoDArray mMatrix and fill mGraph with nodes and edges.
     public void fillGraph() {
+        // Fills the Graph with nodes that have values associated with their row,col positions (starting at 0,0).
+        // Add edges between nodes from left to right and top to bottom.
+        // Each edge has sum values of the row,col positions and the appropriate progressive adjacent location
+        // in the input matrix.
         for (int r = 0; r < (contiguousArray.getSize() - 1); r++) {
             for (int c = 0; c < (contiguousArray.getSize() - 1); c++) {
-                int distance = contiguousArray.getElement(r,c);
-                mGraph.addEdge(new DijkstraNode(r),new DijkstraNode(c),distance);
+                int distanceLeftToRight = contiguousArray.getElement(r,c + 1);
+                int distanceTopToBottom = contiguousArray.getElement(r + 1,c);
+                int distanceBotLeftToBotRight = contiguousArray.getElement(r + 1, c + 1);
+                DijkstraNode dn1 = new DijkstraNode(c + r*contiguousArray.getSize());
+                DijkstraNode dn2 = new DijkstraNode( (c+1) + r*contiguousArray.getSize());
+                DijkstraNode dn3 = new DijkstraNode(c + (r+1)*contiguousArray.getSize());
+                DijkstraNode dn4 = new DijkstraNode( (c+1) + (r+1)*contiguousArray.getSize());
+                mGraph.addEdge(dn1, dn2, distanceLeftToRight);
+                mGraph.addEdge(dn1, dn3, distanceTopToBottom);
+                mGraph.addEdge(dn3, dn4, distanceBotLeftToBotRight);
             }
         }
     } //end fillGraph

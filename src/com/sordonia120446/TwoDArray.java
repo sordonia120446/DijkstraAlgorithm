@@ -39,6 +39,8 @@ public class TwoDArray {
     }
 
     public void fillContiguousArray() {
+        // Iterates through each row of data contained in ArrayList mRows.
+        // Iterates with a nested for-loop through the row of #'s and adds each elem to the contiguous array.
         int cntr = 0;
         for (int[] row:mRows) {
             for (int i = 0; i < row.length; i++) {
