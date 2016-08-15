@@ -10,6 +10,8 @@ import java.io.File;
  * Scans in a txt or csv file containing a square matrix.
  * Converts matrix into a Map of nodes and edges that's added into Graph mGraph.
  * Intended to read in the matrix provided in Project Euler Problem 81.
+ * 
+ * The answer is 427337.
  */
 public class TestCase2 {
     private Graph mGraph;

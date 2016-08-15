@@ -8,6 +8,7 @@ public class Main {
 	// write your code here
 
         // Testing the TestCase2 class that reads in a txt/csv file.
+        // The answer is 427337
         // String filename = "src/p081_simplematrix.csv"; // a simpler matrix example on Problem 81
         String filename = "src/p081_matrix.txt";
         TestCase2 tc2 = new TestCase2(filename);
